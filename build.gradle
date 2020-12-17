@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        maven { // ForgeGradle maven repository
+            url = "https://files.minecraftforge.net/maven/"
+        }
+        mavenCentral()
+        jcenter()
+    }
+
+    // just apply plugin in subprojects
+    dependencies {
+        classpath("net.minecraftforge.gradle:ForgeGradle:3.0.189")
+    }
+}
+
+allprojects {
+    repositories {
+        maven { // ForgeGradle maven repository
+            url = "https://files.minecraftforge.net/maven/"
+        }
+        mavenCentral()
+        jcenter()
+    }
+}

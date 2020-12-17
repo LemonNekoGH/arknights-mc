@@ -1,0 +1,4 @@
+rootProject.name = "arknights-mc"
+include(
+        "arknights-mc-core"
+)

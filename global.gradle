@@ -1,0 +1,68 @@
+/**
+ * global method
+ * @param input
+ * @return the input is null or empty or blank
+ */
+boolean isStringEmptyOrBlank(String str) {
+    if (str == null) {
+        return true
+    }
+    if (str.isEmpty()) {
+        return true
+    }
+    def blankChars = ['\t','\n','\r','\f','\n',' '] as char[]
+    for (int i = 0;i < str.length();i ++) {
+        boolean isCharBlank = false
+        char charAt = str.charAt(i)
+        for (char c in blankChars) {
+            if (charAt == c) {
+                isCharBlank = true
+                break
+            }
+        }
+        if (!isCharBlank) {
+            return false
+        }
+    }
+    return true
+}
+
+/**
+ * global method
+ * execute the specified command and return result
+ * @param command
+ * @return result
+ */
+String executeCommandAndGetOutput(String command) {
+    if (isStringEmptyOrBlank(command)) {
+        throw new RuntimeException("command cannot be null or empty or blank")
+    }
+    InputStream input = Runtime.getRuntime().exec(command).inputStream
+    BufferedInputStream buffered = new BufferedInputStream(input)
+    ArrayList<Byte> bytes = new ArrayList<>()
+    int i = buffered.read()
+    while (i != -1) {
+        bytes.add(i as byte)
+        i = buffered.read()
+    }
+    String output = new String(bytes.toArray() as byte[])
+    return output.trim()
+}
+
+/**
+ * global method
+ * @return get project version.
+ */
+String getModVersion() {
+    return executeCommandAndGetOutput("git rev-list HEAD --count")
+}
+
+ext {
+    isStringEmptyOrBlank = this.&isStringEmptyOrBlank
+    executeCommandAndGetOutput = this.&executeCommandAndGetOutput
+    getModVersion = this.&getModVersion
+    groupId = "moe.lemonneko.mcmods"
+    minecraftVersion = "1.16.4"
+    forgeVersion = "35.1.4"
+    artifactIdPrefix = "arkngihts-mc-"
+}

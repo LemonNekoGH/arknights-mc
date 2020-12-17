@@ -1,0 +1,48 @@
+apply plugin: "net.minecraftforge.gradle"
+apply from: "${project.rootProject.file("global.gradle")}"
+
+group = ext.groupId
+version = ext.getModVersion()
+archivesBaseName = "$artifactIdPrefix-core"
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+compileJava {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+minecraft {
+    mappings(channel: "snapshot", version: "20200514-1.16")
+    runs {
+        client {
+            workingDirectory project.file("run")
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                arknights_mc {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "arknights_mc",
+                "Specification-Vendor": "arknights_mc_sareus",
+                "Specification-Version": "0.0.1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"arknights_mc_sareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+dependencies {
+    minecraft("net.minecraftforge:forge:$minecraftVersion-$forgeVersion")
+}

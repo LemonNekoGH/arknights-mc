@@ -1,0 +1,22 @@
+modLoader = "javafml" # required
+loaderVersion = "[35,)" # required
+license = "apache-2.0"
+
+[[mods]]
+modId = "arknights_mc"
+version = "${file.jarVersion}"
+displayName = "ArknightsMC Core"
+
+[[dependencies.arknights_mc]]
+modId = "forge" # because this is forge mod
+mandatory = true # it means forge is required
+versionRange = "(35,)" # the same with loaderVersion
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.arknights_mc]]
+modId = "minecraft" # because this is mc mod
+mandatory = true # it means minecraft is required
+versionRange = "[1.16.4]" # the same with minecraft version
+ordering = "NONE"
+side = "BOTH"

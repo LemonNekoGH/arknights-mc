@@ -1,0 +1,15 @@
+[
+  {
+    "modid": "arknights_mc",
+    "name": "ArknightsMC Core",
+    "description": "this is core of arknights_mc",
+    "version": "1.16.4-1",
+    "mcversion": "1.16.4",
+    "url": "https://github.com/LemonNekoGH/arknights-mc",
+    "authorList": [
+      "LemonNeko",
+      "???"
+    ],
+    "credits": ""
+  }
+]
